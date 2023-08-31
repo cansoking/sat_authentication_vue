@@ -10,7 +10,7 @@
         active-text-color="#00adb5"
       >
         <el-menu-item index="1">
-          <i style="font-size: 30px" class="el-icon-cpu"></i>
+          <i style="font-size: 30px" class="el-icon-odometer"></i>
           卫星认证控制中心
         </el-menu-item>
       </el-menu>

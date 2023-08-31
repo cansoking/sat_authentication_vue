@@ -2,7 +2,7 @@
   <div>
     <el-container direction="vertical">
       <sat-head></sat-head>
-      <el-container :direction="horizontal">
+      <el-container direction="horizontal">
         <sat-aside></sat-aside>
         <el-main height="">
           <!-- Main content -->
@@ -16,8 +16,9 @@
 <script>
 import SatAside from "../components/sitepart/SatAside.vue";
 import SatHead from "../components/sitepart/SatHead.vue";
+import SatPagination from "@/components/sitepart/SatPagination.vue";
 export default {
-  components: { SatHead, SatAside },
+  components: { SatHead, SatAside, SatPagination },
   name: "SatAuthTccControl",
 
   data() {

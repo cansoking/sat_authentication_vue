@@ -4,12 +4,20 @@
       <!-- Aside content -->
       <el-menu
         :unique-opened="true"
-        default-active="satground"
+        default-active="tccpreinfo"
         background-color="#393e46"
         text-color="#eeeeee"
         active-text-color="#00adb5"
         router
       >
+        <el-menu-item index="tccpreinfo">
+          <i class="el-icon-location"></i>
+          TCC预置信息表
+        </el-menu-item>
+        <el-menu-item index="tccsgauth">
+          <i class="el-icon-magic-stick"></i>
+          TCC卫星注册管理
+        </el-menu-item>
         <el-menu-item index="satground">
           <i class="el-icon-s-flag"></i>
           星地认证信息
