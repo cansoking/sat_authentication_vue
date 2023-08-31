@@ -1,8 +1,11 @@
 <template>
     <div>
         <el-page-header @back="goBack">
-            <div style="font-size: 30px; font-weight: 600" slot="content">
-                ID #{{ sat_data.id }} 认证流程日志
+            <div v-if="sat_data.st === 1" style="font-size: 30px; color: #67C23A; font-weight: 600" slot="content">
+                源卫星 #{{ sat_data.idsatSrc }}-目标卫星 #{{ sat_data.idsatDst }} 认证流程日志
+            </div>
+            <div v-else style="font-size: 30px; color: #F56C6C; font-weight: 600" slot="content">
+                源卫星 #{{ sat_data.idsatSrc }}-目标卫星 #{{ sat_data.idsatDst }} 认证流程日志
             </div>
             <div slot="title" style="font-size: 20px; font-weight: 500;">
                 返回
