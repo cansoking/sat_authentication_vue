@@ -114,8 +114,9 @@ export default {
         };
     },
 
-    created() {
+    mounted() {
         this.getDataByPage(1, 15)
+        this.$store.state.aside_cur_page = "tccsgauth"
     },
 
     methods: {

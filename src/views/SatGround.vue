@@ -97,6 +97,7 @@ export default {
 
   mounted() {
     this.getPageData(1)
+    this.$store.state.aside_cur_page = "satground"
   },
   computed: {
     sat_num() {

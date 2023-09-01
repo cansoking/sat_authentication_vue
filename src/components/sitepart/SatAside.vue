@@ -4,7 +4,7 @@
       <!-- Aside content -->
       <el-menu
         :unique-opened="true"
-        default-active="tccpreinfo"
+        :default-active="$store.state.aside_cur_page"
         background-color="#393e46"
         text-color="#eeeeee"
         active-text-color="#00adb5"
@@ -36,12 +36,15 @@ export default {
   name: "SatAuthSatAside",
 
   data() {
-    return {};
+    return {
+    };
   },
 
-  mounted() {},
+  created() {
+  },
 
-  methods: {},
+  methods: {
+  },
 };
 </script>
 

@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isFirstLevel: false,
-    isSecondLevel: false
+    isSecondLevel: false,
+    aside_cur_page: "tccpreinfo"
   },
   getters: {
   },
