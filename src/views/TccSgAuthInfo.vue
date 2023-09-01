@@ -12,19 +12,23 @@
                     </el-table-column>
                     <el-table-column prop="ssid" label="卫星广播身份(SSID)" width="370">
                         <template scope="scope">
-                            <span>--</span>
+                            <span v-if="scope.row.ssid != null">{{ scope.row.ssid }}</span>
+                            <span v-else>--</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="st" label="认证状态(ST)" width="370">
                         <template scope="scope">
-                            <span v-if="scope.row.st === 0 || scope.row.st === '0'" style="color: #F56C6C;">未认证</span>
+                            <span v-if="scope.row.st === 0 || scope.row.st === '0'" style="color: #F56C6C;">认证失败</span>
                             <span v-else-if="scope.row.st === 1 || scope.row.st === '1'" style="color: #67C23A">已认证</span>
+                            <span v-else-if="scope.row.st === 2 || scope.row.st === '2'" style="color: #E6A23C">未注册</span>
+                            <span v-else-if="scope.row.st === 3 || scope.row.st === '3'" style="color: #909399">未连接</span>
                             <span v-else>--</span>
                         </template>
                     </el-table-column>
                     <el-table-column prop="ck" label="会话密钥(CK)" width="370">
                         <template scope="scope">
-                            <span>--</span>
+                            <span v-if="scope.row.ck != null">{{ scope.row.ck }}</span>
+                            <span v-else>--</span>
                         </template>
                     </el-table-column>
                     <el-table-column align="center">
@@ -92,11 +96,19 @@ export default {
             auth_status: [
                 {
                     value: 0,
-                    label: '未认证'
+                    label: '认证失败'
                 },
                 {
                     value: 1,
                     label: '已认证'
+                },
+                {
+                    value: 2,
+                    label: '未注册'
+                },
+                {
+                    value: 3,
+                    label: '未连接'
                 }
             ]
         };
