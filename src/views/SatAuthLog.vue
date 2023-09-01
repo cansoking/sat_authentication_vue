@@ -69,6 +69,7 @@ export default {
             this.$axios.get("http://localhost:8080/satquery/leoleo/twoAuthSingle/sid/" + this.sat_data.idsatSrc + "/tid/" + this.sat_data.idsatDst).then(res => {
                 let st = res.data.st
                 this.sat_data = res.data
+                this.log_data = res.data.log
                 if (st === 1) {
                     this.$notify({
                         title: '认证成功',

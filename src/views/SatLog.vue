@@ -69,6 +69,7 @@ export default {
             this.$axios.get("http://localhost:8080/satquery/tccleo/authSingle/" + this.sat_data.preleo.idsat).then(res => {
                 let st = res.data.st
                 this.sat_data = res.data
+                this.log_data = res.data.preleo.log
                 if (st === 1) {
                     this.$notify({
                         title: '认证成功',
