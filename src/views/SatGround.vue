@@ -20,10 +20,11 @@
           <div slot="header" class="clearfix">
             <span v-if="search_flag">当前页搜索结果</span>
             <span v-else>当前轨道：{{ cur_page_num }} 号轨道</span>
-            <el-button @click="second_level_auth" v-if="!search_flag" style="float: right; padding: 3px 5px; margin-left: 15px;"
-              type="primary" round :plain="!$store.state.isSecondLevel">二级认证</el-button>
-            <el-button @click="first_level_auth" v-if="!search_flag" style="float: right; padding: 3px 5px"
-              type="primary" round :plain="!$store.state.isFirstLevel">一级认证</el-button>
+            <el-button @click="second_level_auth" v-if="!search_flag"
+              style="float: right; padding: 3px 5px; margin-left: 15px;" type="primary" round
+              :plain="!$store.state.isSecondLevel">二级认证</el-button>
+            <el-button @click="first_level_auth" v-if="!search_flag" style="float: right; padding: 3px 5px" type="primary"
+              round :plain="!$store.state.isFirstLevel">一级认证</el-button>
           </div>
           <el-descriptions :column="1">
             <el-descriptions-item label="总计卫星数量">{{ sat_num }}</el-descriptions-item>
@@ -157,7 +158,6 @@ export default {
       this.loading = true
       // 首先进行一级认证
       this.$axios.get("http://localhost:8080/satquery/tccleo/auth").then(res => {
-        this.loading = false
         this.$notify({
           title: '一级认证完成',
           dangerouslyUseHTMLString: true,
@@ -165,31 +165,32 @@ export default {
           type: "success",
           offset: 100
         });
+        // 请求二级认证
+        this.$axios.get("http://localhost:8080/satquery/leoleo/twoAuth").then(res => {
+          this.loading = false
+          this.$notify({
+            title: '二级认证完成',
+            dangerouslyUseHTMLString: true,
+            message: '认证总数：' + res.data.total_auth + '<br>成功认证：' + res.data.auth_suc + '<br>失败认证：' + res.data.auth_fail,
+            type: "success",
+            offset: 100
+          });
+          this.getPageData(this.cur_page_num)
+          this.$store.state.isSecondLevel = true
+          this.$store.state.isFirstLevel = false
+        }).catch(err => {
+          this.loading = false
+          this.$notify.error({
+            title: '二级认证失败',
+            message: "发生未知错误",
+            offset: 100
+          });
+          console.log("errors", err);
+        })
       }).catch(err => {
-        this.$notify.error({
-          title: '认证失败',
-          message: "发生未知错误",
-          offset: 100
-        });
-        console.log("errors", err);
-      })
-      // 请求二级认证
-      this.$axios.get("http://localhost:8080/satquery/leoleo/twoAuth").then(res => {
-        this.loading = false
-        this.$notify({
-          title: '二级认证完成',
-          dangerouslyUseHTMLString: true,
-          message: '认证总数：' + res.data.total_auth + '<br>成功认证：' + res.data.auth_suc + '<br>失败认证：' + res.data.auth_fail,
-          type: "success",
-          offset: 100
-        });
-        this.getPageData(this.cur_page_num)
-        this.$store.state.isSecondLevel = true
-        this.$store.state.isFirstLevel = false
-      }).catch(err => {
         this.loading = false
         this.$notify.error({
-          title: '认证失败',
+          title: '一级认证失败',
           message: "发生未知错误",
           offset: 100
         });
