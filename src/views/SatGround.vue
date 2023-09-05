@@ -155,6 +155,25 @@ export default {
     },
     second_level_auth() {
       this.loading = true
+      // 首先进行一级认证
+      this.$axios.get("http://localhost:8080/satquery/tccleo/auth").then(res => {
+        this.loading = false
+        this.$notify({
+          title: '一级认证完成',
+          dangerouslyUseHTMLString: true,
+          message: '认证总数：' + res.data.total_auth + '<br>成功认证：' + res.data.auth_suc + '<br>失败认证：' + res.data.auth_fail,
+          type: "success",
+          offset: 100
+        });
+      }).catch(err => {
+        this.$notify.error({
+          title: '认证失败',
+          message: "发生未知错误",
+          offset: 100
+        });
+        console.log("errors", err);
+      })
+      // 请求二级认证
       this.$axios.get("http://localhost:8080/satquery/leoleo/twoAuth").then(res => {
         this.loading = false
         this.$notify({
