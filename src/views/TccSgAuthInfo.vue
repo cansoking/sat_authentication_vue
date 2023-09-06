@@ -36,7 +36,8 @@
                             <el-input v-model="search" size="mini" placeholder="输入IDsat搜索" />
                         </template>
                         <template slot-scope="scope">
-                            <el-popover placement="left" width="300" trigger="click">
+                            <el-popover v-model="visible[scope.$index]" placement="left" width="300"
+                                trigger="click">
                                 <el-form size="mini" label-position="top" ref="form" :model="edit_temp_form.cur_table_data">
                                     <el-form-item required label="卫星广播身份(SSID)">
                                         <el-input :maxlength="8" v-model="edit_temp_form.cur_table_data.ssid"></el-input>
@@ -63,7 +64,8 @@
                                     slot="reference">编辑</el-button>
                             </el-popover>
                             <el-button size="mini" type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                                @click="handleDelete(scope.$index, scope.row)">删除
+                            </el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -85,6 +87,7 @@ export default {
 
     data() {
         return {
+            visible: [],
             search: '',
             cur_page_num: 1,
             total_page_num: 0,
@@ -127,6 +130,9 @@ export default {
                     console.log("地面控制中心预置信息表获取成功");
                     that.total_page_num = response.data.total;
                     that.tableData = response.data.list;
+                    for (let i = 0; i < that.tableData.length; i++) {
+                        that.visible[i] = false
+                    }
                 }, function (err) {
                     console.log("地面控制中心预置信息表数据获取失败");
                 })
@@ -182,6 +188,7 @@ export default {
                         message: '修改失败!'
                     });
                 }
+                this.visible[this.edit_temp_form.cur_idx] = false
             })
         }
     },

@@ -12,7 +12,7 @@
       >
         <el-menu-item index="tccpreinfo">
           <i class="el-icon-location"></i>
-          TCC预置信息表
+          TCC预置信息管理
         </el-menu-item>
         <el-menu-item index="tccsgauth">
           <i class="el-icon-magic-stick"></i>

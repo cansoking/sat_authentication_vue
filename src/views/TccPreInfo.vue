@@ -2,7 +2,7 @@
     <div>
         <el-card :key="0" class="box-card">
             <div slot="header" class="clearfix">
-                <span style="font-size: 30px; font-weight: 600;"> TCC预置信息表</span>
+                <span style="font-size: 30px; font-weight: 600;"> TCC预置信息管理</span>
             </div>
             <template>
                 <el-table stripe
@@ -23,7 +23,7 @@
                             <el-input v-model="search" size="mini" placeholder="输入编号搜索" />
                         </template>
                         <template slot-scope="scope">
-                            <el-popover placement="left" width="300" trigger="click">
+                            <el-popover v-model="visible[scope.$index]" placement="left" width="300" trigger="click">
                                 <el-form size="mini" label-position="top" ref="form" :model="edit_temp_form.cur_table_data">
                                     <el-form-item required label="默认加密密钥(Dkenc)">
                                         <el-input :maxlength="8" v-model="edit_temp_form.cur_table_data.dkenc"></el-input>
@@ -74,7 +74,8 @@ export default {
                 cur_idx: 0,
                 cur_table_data: {}
             },
-            tableData: []
+            tableData: [],
+            visible: []
         };
     },
 
@@ -91,6 +92,9 @@ export default {
                     console.log("地面控制中心预置信息表获取成功");
                     that.total_page_num = response.data.total;
                     that.tableData = response.data.list;
+                    for (let i = 0; i < that.tableData.length; i++) {
+                        that.visible[i] = false
+                    }
                 }, function (err) {
                     console.log("地面控制中心预置信息表数据获取失败");
                 })
@@ -146,6 +150,7 @@ export default {
                         message: '修改失败!'
                     });
                 }
+                this.visible[this.edit_temp_form.cur_idx] = false
             })
         }
     },
