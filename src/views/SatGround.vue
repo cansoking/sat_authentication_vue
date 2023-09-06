@@ -159,7 +159,7 @@ export default {
       // 首先进行一级认证
       this.$axios.get("http://localhost:8080/satquery/tccleo/auth").then(res => {
         this.$notify({
-          title: '一级认证完成',
+          title: '星地认证完成',
           dangerouslyUseHTMLString: true,
           message: '认证总数：' + res.data.total_auth + '<br>成功认证：' + res.data.auth_suc + '<br>失败认证：' + res.data.auth_fail,
           type: "success",
@@ -190,7 +190,7 @@ export default {
       }).catch(err => {
         this.loading = false
         this.$notify.error({
-          title: '一级认证失败',
+          title: '星地认证失败',
           message: "发生未知错误",
           offset: 100
         });
