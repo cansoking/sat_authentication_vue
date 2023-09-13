@@ -51,8 +51,8 @@
           </div>
           <div class="text item">
             <el-descriptions :column="1">
-              <el-descriptions-item label="卫星IDsat">{{ sat.preleo.idsat }}</el-descriptions-item>
-              <el-descriptions-item label="卫星SSID">{{ sat.preleo.ssid }}</el-descriptions-item>
+              <el-descriptions-item label="卫星ID">{{ sat.preleo.idsat }}</el-descriptions-item>
+              <el-descriptions-item label="卫星广播身份">{{ sat.preleo.ssid }}</el-descriptions-item>
               <el-descriptions-item label="认证状态">
                 <el-tag v-if="sat.st === 0" size="small" type="danger">认证失败</el-tag>
                 <el-tag v-if="sat.st === 1" size="small" type="success">已认证</el-tag>
