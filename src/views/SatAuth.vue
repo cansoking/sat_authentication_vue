@@ -9,7 +9,7 @@
       </el-col>
     </el-row>
     <el-divider></el-divider>
-    <el-row type="flex" v-if="sat_data.length === 0 || $store.state.isSecondLevel === false" justify="center" style="margin-top: 20px;" :gutter="0">
+    <el-row type="flex" v-if="total_page_num === 0" justify="center" style="margin-top: 20px;" :gutter="0">
       <el-col :span="24" :offset="0">
         <el-empty :image-size="300"></el-empty>
       </el-col>
@@ -40,7 +40,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row v-if="total_page_num != 0 && $store.state.isSecondLevel === true" type="flex" :gutter="0" justify="center" style="padding-top: 1%;">
+    <el-row v-if="total_page_num != 0" type="flex" :gutter="0" justify="center" style="padding-top: 1%;">
       <el-col :span="10" :offset="0">
         <el-pagination :pager-count="7" background :current-page.sync="cur_page_num" @current-change="handleCurrentChange"
           :page-size="12" :total="total_page_num">
@@ -98,8 +98,13 @@ export default {
           search: this.search
         }
       }).then(res => {
-        this.sat_data = res.data.list
-        this.total_page_num = res.data.total
+        if(res.data != "") {
+          this.sat_data = res.data.list
+          this.total_page_num = res.data.total
+        }else {
+          this.sat_data = []
+          this.total_page_num = 0
+        }
       }).catch(err => {
         console.log("errors", err);
       })
