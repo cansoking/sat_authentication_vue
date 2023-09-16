@@ -44,7 +44,7 @@
                                     </el-form-item>
                                     <el-form-item required label="认证状态(ST)">
                                         <!-- <el-input v-model="edit_temp_form.cur_table_data.st"></el-input> -->
-                                        <el-select v-model="edit_temp_form.cur_table_data.st" placeholder="请选择认证状态">
+                                        <el-select disabled v-model="edit_temp_form.cur_table_data.st" placeholder="请选择认证状态">
                                             <el-option v-for="item in auth_status" :key="item.value" :label="item.label"
                                                 :value="item.value">
                                                 <span style="float: left">{{ item.label }}</span>

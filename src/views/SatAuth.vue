@@ -18,7 +18,7 @@
       <el-col v-for="(sat, idx) in sat_data" :key="idx" :span="6" :offset="0">
         <el-card class="box-card" style="margin-top: 20px;">
           <div slot="header" class="clearfix">
-            <span>ID #{{ sat.id }}</span>
+            <span>卫星 {{ sat.idsatSrc }} -> 卫星 {{ sat.idsatDst }}</span>
             <el-tooltip class="item" effect="dark" content="查看认证日志" placement="bottom">
               <el-button size="mini" style="float: right" plain circle type="info" icon="el-icon-document-copy"
                 @click="toLogPage(idx)">
