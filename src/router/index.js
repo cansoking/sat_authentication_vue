@@ -38,6 +38,11 @@ const routes = [
     path: '/satauthlog',
     name: 'satauthlog',
     component: () => import('../views/SatAuthLog.vue')
+  },
+  {
+    path: '/traffic',
+    name: 'traffic',
+    component: () => import('../views/TrafficMonitor.vue')
   }
 ]
 

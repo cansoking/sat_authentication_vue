@@ -26,6 +26,10 @@
           <i class="el-icon-discover"></i>
           星间认证信息
         </el-menu-item>
+        <el-menu-item index="traffic">
+          <i class="el-icon-connection"></i>
+          恶意流量监测
+        </el-menu-item>
       </el-menu>
     </el-aside>
   </div>

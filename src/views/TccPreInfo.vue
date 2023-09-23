@@ -44,8 +44,6 @@
                                 <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
                                     slot="reference">编辑</el-button>
                             </el-popover>
-                            <el-button size="mini" type="danger"
-                                @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -106,36 +104,36 @@ export default {
             // 深拷贝
             this.edit_temp_form.cur_table_data = JSON.parse(JSON.stringify(this.tableData[index]));
         },
-        handleDelete(index, row) {
-            this.edit_temp_form.cur_idx = index;
-            // 深拷贝
-            this.edit_temp_form.cur_table_data = JSON.parse(JSON.stringify(this.tableData[index]));
-            this.$confirm('此操作将永久删除该条目, 是否继续?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-            }).then(() => {
-                this.$axios.delete("http://localhost:8080/satquery/pretcc/deletePreTccByID/" + this.tableData[index].id).then(res => {
-                    if (res.data) {
-                        this.tableData.splice(index, 1);
-                        this.$message({
-                            type: 'success',
-                            message: '删除成功!'
-                        });
-                    } else {
-                        this.$message({
-                            type: 'error',
-                            message: '删除失败!'
-                        });
-                    }
-                });
-            }).catch(() => {
-                this.$message({
-                    type: 'info',
-                    message: '已取消删除'
-                });
-            });
-        },
+        // handleDelete(index, row) {
+        //     this.edit_temp_form.cur_idx = index;
+        //     // 深拷贝
+        //     this.edit_temp_form.cur_table_data = JSON.parse(JSON.stringify(this.tableData[index]));
+        //     this.$confirm('此操作将永久删除该条目, 是否继续?', '提示', {
+        //         confirmButtonText: '确定',
+        //         cancelButtonText: '取消',
+        //         type: 'warning'
+        //     }).then(() => {
+        //         this.$axios.delete("http://localhost:8080/satquery/pretcc/deletePreTccByID/" + this.tableData[index].id).then(res => {
+        //             if (res.data) {
+        //                 this.tableData.splice(index, 1);
+        //                 this.$message({
+        //                     type: 'success',
+        //                     message: '删除成功!'
+        //                 });
+        //             } else {
+        //                 this.$message({
+        //                     type: 'error',
+        //                     message: '删除失败!'
+        //                 });
+        //             }
+        //         });
+        //     }).catch(() => {
+        //         this.$message({
+        //             type: 'info',
+        //             message: '已取消删除'
+        //         });
+        //     });
+        // },
         onSubmit() {
             this.$axios.put("http://localhost:8080/satquery/pretcc/updatePreTcc", this.edit_temp_form.cur_table_data).then((res) => {
                 if (res.data) {
